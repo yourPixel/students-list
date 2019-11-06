@@ -12,12 +12,11 @@ const edit = (res) => ({type: ACTION_TYPE.EDIT_STUDENT, res});
 export const getAllStudents = () => dispatch => {
 	const storedList = localStorage.getItem("studentsList");
 	let list: Array<Object> = JSON.parse(storedList);
-	dispatch(getAll(list))
+	return dispatch(getAll(list))
 };
 
 export const addStudent = (value: Object) => dispatch => {
-	const storedList = localStorage.getItem("studentsList");
-	let lStorage: Array<Object> | null = storedList ? JSON.parse(storedList) : [];
+	let storedList = getStoredList();
 	let newStudent: Object =
 		Object.assign({}, {
 			id: value.id,
@@ -25,25 +24,33 @@ export const addStudent = (value: Object) => dispatch => {
 			dateOfB: value.dateOfB,
 			rating: value.rating,
 		});
-	lStorage.push(newStudent);
-	localStorage.setItem('studentsList', JSON.stringify(lStorage));
-	dispatch(add(newStudent))
+	storedList.push(newStudent);
+	storeList(storedList);
+	return dispatch(add(newStudent))
 };
 
 export const deleteStudent = (id: any) => dispatch => {
-	const storedList = localStorage.getItem("studentsList");
-	let lStorage: Array<Object> | null = storedList ? JSON.parse(storedList) : [];
-	localStorage.setItem("studentsList", JSON.stringify(lStorage.filter(item => item.id !== id)));
-	dispatch(remove(id))
+	let storedList = getStoredList();
+	storeList(storedList.filter(item => item.id !== id));
+	return dispatch(remove(id))
 };
 
 export const editStudent = (value: Object) => dispatch => {
+	let storedList = getStoredList();
+	if (storedList.length > 0){
+		let student: Object | null = storedList.find(item => item.id === value.id);
+		Object.entries(student).map(([k,_]) => student[k] = value[k]);
+		storeList(storedList)
+	}
+	return dispatch(edit(value))
+};
+
+function getStoredList () {
 	const storedList = localStorage.getItem("studentsList");
 	let lStorage: Array<Object> | null = storedList ? JSON.parse(storedList) : [];
-	if (lStorage.length > 0){
-		let student: Object | null = lStorage.find(item => item.id === value.id);
-		Object.entries(student).map(([k,_]) => student[k] = value[k]);
-		localStorage.setItem("studentsList", JSON.stringify(lStorage));
-	}
-	dispatch(edit(lStorage))
-};
+	return lStorage;
+}
+
+function storeList (value: any) {
+	return localStorage.setItem("studentsList", JSON.stringify(value));
+}

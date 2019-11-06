@@ -28,9 +28,13 @@ export default function students(state: Object = initialState, action: Object) {
 			};
 		
 		case ACTION_TYPE.EDIT_STUDENT:
+			let student: Object | null = state.studentsList.find(item => item.id === action.res.id);
+			Object.entries(student).map(([k,_]) => student[k] = action.res[k]);
 			return {
 				...state,
-				studentsList: action.res
+				studentsList: [
+					...state.studentsList
+				]
 			};
 		
 		default:
