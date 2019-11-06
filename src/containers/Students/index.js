@@ -38,27 +38,29 @@ function Students(props: Props) {
 					editStudent={(value) => actions.editStudent(value)}
 				/>
 				
-				<div className="students-list">
-					{(studentsList && studentsList.length > 0) ? (
-						<Data data={studentsList}>
-							{({ item, index }) => (
-								<Item key={index}
-								      student={item}
-								      setToEdit={() => setToEdit(item)}
-								      toggleModal={() => toggleModal(true)}
-								      deleteStudent={() => actions.deleteStudent(item.id)}
-								/>
-							)}
-						</Data>
-					) : null}
+				<div className="container">
+					<div className="students-list">
+						{(studentsList && studentsList.length > 0) ? (
+							<Data data={studentsList}>
+								{({ item, index }) => (
+									<Item key={index}
+									      student={item}
+									      setToEdit={() => setToEdit(item)}
+									      toggleModal={() => toggleModal(true)}
+									      deleteStudent={() => actions.deleteStudent(item.id)}
+									/>
+								)}
+							</Data>
+						) : null}
+					</div>
+					
+					<button type="button" className="btn btn--create-student" onClick={(e) => {
+						e.preventDefault();
+						toggleModal(true)
+					}}>
+						<Icon>person_add</Icon>
+					</button>
 				</div>
-				
-				<button type="button" className="btn btn--create-student" onClick={(e) => {
-					e.preventDefault();
-					toggleModal(true)
-				}}>
-					<Icon>person_add</Icon>
-				</button>
 			</section>
 		</Layout>
 	);

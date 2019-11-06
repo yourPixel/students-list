@@ -23,14 +23,19 @@ h1, h2, h3, h4, h5, h6, p {
 $blue_00: #0037FF;
 
 section {
+	.container{
+		display: block;
+		width: 100%;
+		max-width: 1170px;
+		margin: auto;
+	}
 	&.students-section {
-		padding: 100px;
+		padding: 100px 30px;
 
 		.students-list {
 			display: flex;
 			flex-wrap: wrap;
 			width: 100%;
-			max-width: 1170px;
 
 			.student-item {
 				position: relative;
@@ -70,7 +75,7 @@ section {
 
 				.details {
 					padding-left: 18px;
-					width: 240px;
+					padding-right: 50px;
 
 					h4 {
 						margin: 0;
@@ -142,15 +147,6 @@ section {
 									color: red;
 								}
 							}
-
-							//&:hover {
-							//	.tooltip span {
-							//		opacity: 1;
-							//		z-index: 6;
-							//		visibility: visible;
-							//		top: -55px;
-							//	}
-							//}
 						}
 					}
 
@@ -233,6 +229,7 @@ section {
 }
 
 .btn{
+	display: block;
 	width: 100%;
 	background-color: transparent;
 	border: 2px dashed $blue_00;
@@ -259,7 +256,6 @@ section {
 		margin-top: 50px;
 	}
 }
-
 
 //Modal
 .submit-student-info-modal{
@@ -296,5 +292,56 @@ section {
 		padding: 0;
 		margin: 0;
 		width: 100%;
+	}
+}
+
+
+//media
+@media only screen and (max-width:769px){
+	section{
+		&.students-section{
+			.students-list{
+				justify-content: center;
+				.student-item{
+					margin-right: 0;
+					margin-left: 0;
+					padding-left: 15px;
+					padding-right: 10px;
+					.details{
+						padding-left: 15px;
+						h4{
+							font-size: 15px;
+							line-height: 21px;
+						}
+					}
+				}
+			}
+			.btn{
+				margin: auto;
+				display: block;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width:420px){
+	section{
+		&.students-section{
+			.students-list{
+				.student-item{
+					padding-top: 10px;
+					padding-bottom: 10px;
+					.details{
+						h4{
+							font-size: 14px;
+						}
+					}
+				}
+			}
+			.btn{
+				margin: auto;
+				display: block;
+			}
+		}
 	}
 }
