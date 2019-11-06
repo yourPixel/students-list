@@ -1,0 +1,1 @@
+export const isNotUndefined = (val: any) => val !== undefined;

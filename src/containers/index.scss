@@ -1,0 +1,300 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+	"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	monospace;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+	padding: 0;
+}
+$blue_00: #0037FF;
+
+section {
+	&.students-section {
+		padding: 100px;
+
+		.students-list {
+			display: flex;
+			flex-wrap: wrap;
+			width: 100%;
+			max-width: 1170px;
+
+			.student-item {
+				position: relative;
+				display: flex;
+				//flex-wrap: wrap;
+				align-items: center;
+				max-width: 350px;
+				width: 100%;
+				min-height: 100px;
+				padding: 20px;
+				margin-bottom: 20px;
+				margin-right: 20px;
+				border-radius: 10px;
+				background: #ffffff;
+				box-shadow: 0 2px 4px 0 rgba(153, 182, 208, 0.1),
+				0 10px 30px 0 rgba(100, 121, 141, 0.1);
+				transition: box-shadow 0.3s ease-in-out;
+				z-index: 1;
+				cursor: pointer;
+
+				.icon {
+					position: relative;
+					display: flex;
+					width: 36px;
+					height: 36px;
+					border-radius: 100%;
+					background: rgba($blue_00, 0.07);
+					flex-shrink: 0;
+
+					span {
+						display: block;
+						margin: auto;
+						color: $blue_00;
+					}
+
+				}
+
+				.details {
+					padding-left: 18px;
+					width: 240px;
+
+					h4 {
+						margin: 0;
+						font-size: 17px;
+						font-weight: 400;
+						line-height: 24px;
+						color: #000;
+					}
+
+					span {
+						&.dateOfB {
+							display: block;
+							font-size: 12px;
+							color: grey;
+							margin-bottom: 5px;
+						}
+					}
+				}
+
+				.settings {
+					position: absolute;
+					display: block;
+					width: 55px;
+					height: 18px;
+					top: 25px;
+					left: auto;
+					right: 15px;
+
+					.settings-tools {
+						position: absolute;
+						display: flex;
+						justify-content: flex-end;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						left: 0;
+
+						.edit,
+						.delete {
+							position: relative;
+							display: block;
+							opacity: 0;
+							pointer-events: none;
+							margin-top: -20px;
+							transition: margin-top 0.3s ease-in-out,
+							opacity 0.3s ease-in-out;
+							span.material-icons{
+								font-size: 18px;
+								color: grey;
+								transition: color 0.3s ease-in-out;
+							}
+
+							&.edit {
+								transition-delay: 0.3s;
+							}
+
+							&.delete {
+								margin-left: 5px;
+							}
+
+							&.edit:hover {
+								span.material-icons{
+									color: $blue-00;
+								}
+							}
+
+							&.delete:hover {
+								span.material-icons{
+									color: red;
+								}
+							}
+
+							//&:hover {
+							//	.tooltip span {
+							//		opacity: 1;
+							//		z-index: 6;
+							//		visibility: visible;
+							//		top: -55px;
+							//	}
+							//}
+						}
+					}
+
+					.dots {
+						position: relative;
+						display: table;
+						opacity: 1;
+						float: right;
+						width: 20px;
+						height: 100%;
+						padding-top: 6px;
+						margin-right: -2px;
+						cursor: pointer;
+						transition: opacity 0.3s ease-in-out 0.6s;
+
+						.dot,
+						&:before,
+						&:after {
+							position: absolute;
+							display: block;
+							width: 4px;
+							height: 4px;
+							right: 0;
+							left: 0;
+							margin: auto;
+							border-radius: 50%;
+							background: grey;
+							transition: background-color 0.3s ease-in-out;
+						}
+
+						.dot {
+							top: 50%;
+							transform: translateY(-50%);
+						}
+
+						&:before,
+						&:after {
+							content: '';
+						}
+
+						&:before {
+							top: 1px;
+						}
+
+						&:after {
+							top: auto;
+							bottom: 1px;
+						}
+
+						&:hover {
+							.dot,
+							&:before,
+							&:after {
+								background-color: $blue-00;
+							}
+						}
+					}
+
+					&.active {
+						.settings-tools {
+							.edit,
+							.delete {
+								opacity: 1;
+								margin-top: 0;
+								pointer-events: auto;
+								cursor: pointer;
+							}
+						}
+
+						.dots {
+							pointer-events: none;
+							opacity: 0;
+							transition: opacity 0s ease-in-out;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.btn{
+	width: 100%;
+	background-color: transparent;
+	border: 2px dashed $blue_00;
+	box-shadow: none;
+	border-radius: 10px;
+	outline: none;
+	cursor: pointer;
+	transition: opacity 0.2s ease-in-out;
+	&:hover{
+		opacity: 0.8;
+	}
+	span.material-icons{
+		color: $blue_00;
+	}
+	&--create-student {
+		max-width: 350px;
+		min-height: 100px;
+		span.material-icons{
+			font-size: 40px;
+		}
+	}
+	&--submit{
+		padding: 10px 0 8px;
+		margin-top: 50px;
+	}
+}
+
+
+//Modal
+.submit-student-info-modal{
+	position: absolute;
+	width: 500px;
+	background-color: #fff;
+	right: 0;
+	left: 0;
+	top: 50px;
+	margin: auto;
+	outline: none;
+	padding: 50px;
+	h4{
+		margin: 0;
+		font-size: 25px;
+		font-weight: 400;
+		line-height: 24px;
+		color: #000;
+		text-align: center;
+	}
+	.simple-label{
+		display: block;
+		font-size: 0.75rem;
+		color: rgba(0, 0, 0, 0.54);
+		font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+		font-weight: 400;
+		line-height: 1;
+		letter-spacing: 0.00938em;
+		width: 100%;
+		margin-bottom: 5px;
+	}
+	fieldset {
+		border: none;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+	}
+}
