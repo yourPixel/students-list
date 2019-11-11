@@ -1,7 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 
-const load = (getComp) => Loadable({
+const load = (getComp: () => void) => Loadable({
 	loader: () => getComp(),
 	loading: () => <div>Loading...</div>
 });

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { Icon } from '@material-ui/core';
 import { bindActionCreators } from 'redux';
-import Layout from '../../components/Layout';
+import { Consume } from '../../components/LayoutProvider';
 import { connect } from 'react-redux';
 import { Data } from '../../components/tools';
 import * as Actions from '../../actions';
@@ -24,7 +24,10 @@ function Students(props: Props) {
 	}, [dispatch]);
 	
 	return (
-		<Layout title="STUDENTS | LIST" classNameLayout="">
+		<Consume consume={{
+			title: 'STUDENTS | LIST',
+			classNameLayout: 'dashboard-home'
+		}}>
 			<section className="students-section">
 				<SubmitStudentInfoModal
 					isShowed={isShowed}
@@ -62,7 +65,7 @@ function Students(props: Props) {
 					</button>
 				</div>
 			</section>
-		</Layout>
+		</Consume>
 	);
 }
 

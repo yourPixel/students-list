@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from '@reach/router';
+import {LayoutProvider} from '../components/LayoutProvider';
 import routes from '../routes';
 import {store} from '../redux/store';
 import uuid from 'uuid';
@@ -36,11 +37,13 @@ function Root(){
 	
 	return (
 		<Provider store={store}>
-			<Router>
-				{routes.map((route, i) => (
-					<route.component key={i} {...route}/>
-				))}
-			</Router>
+			<LayoutProvider value={{title: "Loading..."}}>
+				<Router>
+					{routes.map((route, i) => (
+						<route.component key={i} {...route}/>
+					))}
+				</Router>
+			</LayoutProvider>
 		</Provider>
 	);
 }
