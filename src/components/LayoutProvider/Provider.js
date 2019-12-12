@@ -4,7 +4,7 @@ import {LayoutContext} from "./";
 import { Layout } from './';
 
 type Props = {
-	children: React.ReactNode,
+	children: React.Node,
 	value: Object
 }
 

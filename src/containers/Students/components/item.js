@@ -7,6 +7,9 @@ import { ClickOutside } from '../../../components/tools';
 
 type StudentProps = {
 	student: Object,
+	setToEdit?: any => void,
+	toggleModal?: any => void,
+	deleteStudent?: any => void
 }
 function Item({ student, ...rest }: StudentProps){
 	return(
@@ -44,6 +47,7 @@ function Settings({setToEdit, toggleModal, deleteStudent}: SettingsProps) {
 			return openSettings(false);
 		}
 	};
+	
 	return (
 		<ClickOutside clickedOutside={onClickedOutside}>
 			{({innerRef}) => (

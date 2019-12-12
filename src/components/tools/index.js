@@ -1,26 +1,27 @@
 //@flow
-import * as React from "react"
-import { isArray, isNull, isObject, isUndefined } from 'util';
+import * as React from "react";
+// $FlowFixMe
+import { isArray } from 'util';
 
 type DataProps = {
 	data: any,
-	children: React.Node
+	children: Object => React.Node
 }
 
 export class Data extends React.Component<DataProps> {
 	render() {
 		const {data, children} = this.props;
 		
-		if (isNull(data) || isUndefined(data)) {
+		if (!data) {
 			return null;
 		}
 		
 		if (isArray(data)) {
-			return data.map((item, index) => children({item: item, index: index}))
+			return data.map((item: Object, index: number) => children({item: item, index: index}))
 		}
 		
-		if (isObject(data)) {
-			return Object.entries(data).map(([k, v], index) => children({item: [k, v], index: index}))
+		if (Object.prototype.toString.call(data) === "[object Object]") {
+			return Object.entries(data).map<Object>(([k: string, v], index: number) => children({item: [k, v], index: index}))
 		}
 		
 		return null;
@@ -36,7 +37,7 @@ type ClickOutsideProps = {
 }
 export class ClickOutside extends React.Component<ClickOutsideProps> {
 	
-	node = React.createRef();
+	 node: React.ElementRef<any> = React.createRef();
 	
 	componentDidMount() {
 		document.addEventListener('click', this.outsideClickHandler, true);

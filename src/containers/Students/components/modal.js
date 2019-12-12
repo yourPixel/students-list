@@ -35,7 +35,7 @@ function SubmitStudentInfoModal(props: Props) {
 	const classes = useStyles();
 	
 	const validate = (values: Object): Object => {
-		let errors: Object | null = {};
+		let errors: Object = {};
 		
 		if (isNotUndefined(values.name)) {
 			if (values.name === "") {
@@ -96,7 +96,7 @@ function SubmitStudentInfoModal(props: Props) {
 									error={form.errors.name && true}
 									id="standard-basic"
 									className={classes.textField}
-									label="ФИО"
+									label="Full name"
 									margin="normal"
 									name="name"
 									defaultValue={form.values.name}
@@ -107,7 +107,7 @@ function SubmitStudentInfoModal(props: Props) {
 								<TextField
 									id="date"
 									error={form.errors.dateOfB && true}
-									label="Дата рождения"
+									label="Date of birth"
 									type="date"
 									className={classes.textField}
 									InputLabelProps={{
@@ -120,7 +120,7 @@ function SubmitStudentInfoModal(props: Props) {
 									defaultValue={form.values.dateOfB}
 								/>
 								
-								<span className="simple-label">Успеваемость</span>
+								<span className="simple-label">Rate student</span>
 								<Rating
 									aria-required="true"
 									name="rating"

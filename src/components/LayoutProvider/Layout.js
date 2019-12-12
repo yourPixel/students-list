@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { LayoutContext } from './';
 
 type Props = {
-	children: React.ReactNode,
+	children: React.Node,
 }
 
 function Layout(props: Props) {

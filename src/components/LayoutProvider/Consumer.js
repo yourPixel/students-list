@@ -5,7 +5,8 @@ import { LayoutContext } from "./Context";
 const isEqual = require("react-fast-compare");
 
 type Props = {
-	consume: any => void
+	consume: any,
+	children: React.Node
 }
 
 class Consume extends React.Component<Props> {
@@ -16,7 +17,7 @@ class Consume extends React.Component<Props> {
 		this.updateState();
 	}
 	
-	componentDidUpdate(prevProps) {
+	componentDidUpdate(prevProps: Props) {
 		if (!isEqual(this.props.consume, prevProps.consume)) {
 			this.updateState();
 		}
