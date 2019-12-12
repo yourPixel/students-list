@@ -80,6 +80,8 @@ function SubmitStudentInfoModal(props: Props) {
 		>
 			<div className="submit-student-info-modal">
 				<h4>{!selectedStudent ? "Добавить нового студента" : "Редактировать"}</h4>
+				<span onClick={() => toggleModal()} className="btn--close-modal"><Icon>close_icon</Icon></span>
+				
 				<Formik
 					initialValues={{
 						name: !selectedStudent ? "" : selectedStudent.name,

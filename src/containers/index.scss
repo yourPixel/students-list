@@ -294,6 +294,27 @@ section {
 		margin: 0;
 		width: 100%;
 	}
+
+	.btn--close-modal{
+		cursor: pointer;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		width: 30px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 100%;
+		background-color: transparent;
+		transition: background-color 0.3s ease-in-out;
+		&:hover{
+			background-color: #00000008;
+		}
+		.material-icons{
+			pointer-events: none;
+		}
+	}
 }
 
 
@@ -349,5 +370,13 @@ section {
 
 	.submit-student-info-modal{
 		padding: 30px;
+		.btn--close-modal{
+			width: 20px;
+			height: 20px;
+			.material-icons{
+				font-size: 20px;
+			}
+		}
+
 	}
 }
